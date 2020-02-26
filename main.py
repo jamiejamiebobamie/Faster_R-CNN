@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-# i need a dataset of image_filepath, 0,0,max_width,max_height,class_name/bag_of_words [0,0,0,1]
 test_filepath = dir_path + '/kitti-object-detection/kitti_single/testing/image_2/*'
 test_images = glob.glob(test_filepath)
 
@@ -26,18 +25,30 @@ training_images = glob.glob(training_images_filepath + "/*")
 
 image_filepath_to_label_filepath_lookup_dict = dict()
 image_size_histogram = dict()
-for file_path in training_images:
-    file_path_without_ext = file_path.split(".")[0]
-    label_file_path = file_path_without_ext + '.txt'
-    image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
+# for file_path in training_images:
+#     file_path_without_ext = file_path.split(".")[0]
+#     label_file_path = file_path_without_ext + '.txt'
+#     image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
+#     im = Image.open(file_path)
+#     w, h = im.size
+#     if (w,h) not in image_size_histogram:
+#         image_size_histogram[(w,h)] = 1
+#     else:
+#         image_size_histogram[(w,h)] += 1
+
+for file_path in test_images:
+    # file_path_without_ext = file_path.split(".")[0]
+    # label_file_path = file_path_without_ext + '.txt'
+    # image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
     im = Image.open(file_path)
     w, h = im.size
-    if (w,h) not in image_size_set:
+    if (w,h) not in image_size_histogram:
         image_size_histogram[(w,h)] = 1
     else:
         image_size_histogram[(w,h)] += 1
+test_images
 
-training_labels = glob.glob(training_labels_filepath + "/*")
+# training_labels = glob.glob(training_labels_filepath + "/*")
 
 # labels_set = set()
 # for file_path in training_labels:
@@ -47,8 +58,13 @@ training_labels = glob.glob(training_labels_filepath + "/*")
 #             labels_set.add(label)
 # print(len(labels_set),labels_set)
 
+# training:
 # {(1242, 375): 6057, (1238, 374): 358, (1224, 370): 770, (1241, 376): 296} 4
-# print(image_size_histogram, len(image_size_histogram))
+print(image_size_histogram, len(image_size_histogram))
+# (1242, 375): 6057 <- only using these images
+
+# testing:
+# {(1242, 375): 6579, (1224, 370): 868, (1226, 370): 71} 3
 
 input_shape = (1242, 375, 3)
 num_classes = 2 # 'Pedestrian' and 'Car'
