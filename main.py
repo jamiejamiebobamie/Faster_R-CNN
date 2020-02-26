@@ -23,48 +23,39 @@ training_labels_filepath = dir_path + '/kitti-object-detection/kitti_single/trai
 training_images_filepath = dir_path + '/kitti-object-detection/kitti_single/training/image_2/'
 training_images = glob.glob(training_images_filepath + "/*")
 
-image_filepath_to_label_filepath_lookup_dict = dict()
-image_size_histogram = dict()
-# for file_path in training_images:
-#     file_path_without_ext = file_path.split(".")[0]
-#     label_file_path = file_path_without_ext + '.txt'
-#     image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
-#     im = Image.open(file_path)
-#     w, h = im.size
-#     if (w,h) not in image_size_histogram:
-#         image_size_histogram[(w,h)] = 1
-#     else:
-#         image_size_histogram[(w,h)] += 1
-
-for file_path in test_images:
-    # file_path_without_ext = file_path.split(".")[0]
-    # label_file_path = file_path_without_ext + '.txt'
-    # image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
-    im = Image.open(file_path)
-    w, h = im.size
-    if (w,h) not in image_size_histogram:
-        image_size_histogram[(w,h)] = 1
-    else:
-        image_size_histogram[(w,h)] += 1
-test_images
-
-# training_labels = glob.glob(training_labels_filepath + "/*")
-
-# labels_set = set()
-# for file_path in training_labels:
-#     with open(file_path, 'r') as fh:
-#         for line in fh:
-#             label = line.split(" ")[0]
-#             labels_set.add(label)
-# print(len(labels_set),labels_set)
-
 # training:
 # {(1242, 375): 6057, (1238, 374): 358, (1224, 370): 770, (1241, 376): 296} 4
-print(image_size_histogram, len(image_size_histogram))
-# (1242, 375): 6057 <- only using these images
-
 # testing:
 # {(1242, 375): 6579, (1224, 370): 868, (1226, 370): 71} 3
+
+TARGET_SIZE = (1242, 375)
+
+training_image_filepath_to_label_filepath_lookup_dict = dict()
+for file_path in training_images:
+    im = Image.open(file_path)
+    w, h = im.size
+    image_is_target_size = (w, h) == TARGET_SIZE
+    if image_is_target_size:
+        file_path_without_ext = file_path.split(".")[0]
+        label_file_path = file_path_without_ext + '.txt'
+        training_image_filepath_to_label_filepath_lookup_dict[file_path] = label_file_path
+
+X = []
+y = []
+
+# for img in training_image_filepath_to_label_filepath_lookup_dict.keys():
+#     read_img = cv2.imread(img, cv2.IMREAD_COLOR)
+#     X.append(read_img)
+
+
+
+set_of_test_images_at_correct_size = set()
+for file_path in test_images:
+    im = Image.open(file_path)
+    w, h = im.size
+    image_is_target_size = (w, h) == TARGET_SIZE
+    if image_is_target_size:
+        set_of_test_images_at_correct_size.add(file_path)
 
 input_shape = (1242, 375, 3)
 num_classes = 2 # 'Pedestrian' and 'Car'
