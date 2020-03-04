@@ -1,14 +1,12 @@
 
 # import pandas as pd
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
+from keras.models import Sequential, Model
+from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
 # from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing.image import img_to_array
 from keras.preprocessing import image
-from keras.applications.vgg16 import VGG16
-from keras.applications.vgg16 import preprocess_input
+from keras.applications.vgg16 import VGG16, preprocess_input
 
 # from sklearn.externals import joblib
 # from sklearn.metrics import confusion_matrix
@@ -20,6 +18,8 @@ import os
 import glob
 from PIL import Image
 import numpy as np
+
+from utils import print_keras_model_layers
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -96,28 +96,76 @@ print(RATIO_BB)
 #     if image_is_target_size:
 #         set_of_test_images_at_correct_size.add(file_path)
 #
-# input_shape = (1242, 375, 3)
-# num_classes = 2 # 'Pedestrian' and 'Car'
-# batch_size = 7
-# epochs = 3
 
-CNN = VGG16(weights='imagenet', include_top=False)
+base_model = VGG16(weights='imagenet', include_top=False)
+model = Model(inputs=base_model.input, outputs=base_model.get_layer('block2_pool').output)
 
 img_path = (dir_path
                     + '/kitti-object-detection/kitti_single/testing/image_2/'
                     + '000000.png')
 img = image.load_img(img_path, target_size=TARGET_RESIZE)
-x = image.img_to_array(img) #(375, 1242, 3)
-x = np.expand_dims(x, axis=0) #(1, 375, 1242, 3)
+x = image.img_to_array(img)
+x = np.expand_dims(x, axis=0)
 x = preprocess_input(x)
-feature_map = CNN.predict(x)
+feature_map = model.predict(x)
 
+input_shape = feature_map[0].shape
+num_classes = 2 # 'Pedestrian' and 'Car'
+epochs = 3
 
-# building the model
-# model = Sequential()
-# model.add(Conv2D(32, kernel_size=(3, 3),
-#                  activation='relu',
-#                  input_shape=input_shape))
+# building the RPN
+# mirrors the architecture of the last 3 layers of VGG16
+RPN_class = Sequential()
+RPN_class.add(Conv2D(256, kernel_size=(1, 1),
+                 activation='relu',
+                 input_shape=input_shape))
+RPN_class.add(Conv2D(256, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(256, (1, 1), activation='relu'))
+RPN_class.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_class.add(Dense(num_classes, activation='sigmoid'))
+
+RPN_bb = Sequential()
+RPN_bb.add(Conv2D(256, kernel_size=(1, 1),
+                 activation='relu',
+                 input_shape=input_shape))
+RPN_bb.add(Conv2D(256, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(256, (1, 1), activation='relu'))
+RPN_bb.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(MaxPooling2D(pool_size=(2, 2)))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Conv2D(512, (1, 1), activation='relu'))
+RPN_bb.add(Dense(num_classes, activation='softmax'))
+
+# compiling the model.
+optimizer = keras.optimizers.Adadelta()
+RPN_bb.compile(loss='categorical_crossentropy',
+              optimizer=optimizer,
+              metrics=['accuracy'])
+RPN_class.compile(loss='categorical_crossentropy',
+            optimizer=optimizer,
+            metrics=['accuracy'])
+
+RPN_bb.summary()
+
 # model.add(Conv2D(64, (3, 3), activation='relu'))
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 # model.add(Dropout(0.25))
