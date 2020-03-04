@@ -118,6 +118,9 @@ input_shape = test_feature_map[0].shape
 num_classes = 3 # 'Pedestrian', 'Car', 'Background'
 epochs = 3
 
+ANCHOR_BOX_SCALES = [128, 256, 512]
+ANCHOR_ASPECT_RATIOS = [(1,1), (1,2), (2,1)]
+
 # building the RPN
 # mirrors the architecture of the last 3 layers of VGG16
 # classification model
