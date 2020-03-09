@@ -1,3 +1,4 @@
+from __future__ import division
 
 import keras
 
@@ -14,10 +15,12 @@ from keras.optimizers import Adam, SGD, RMSprop
 from simple_parser import get_data
 from config import Config
 import data_generators
+import data_augment
 import resnet as nn
 import losses as losses_fn
-import time
 from keras.utils import generic_utils
+import roi_helpers as roi_helpers
+
 
 
 import os
@@ -27,7 +30,9 @@ import numpy as np
 
 import pprint
 import random
-
+import sys
+import time
+import pickle
 from utils import print_keras_model_layers
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -66,7 +71,6 @@ cfg.class_mapping = class_mapping
 print('Training images per class:')
 pprint.pprint(classes_count)
 print('Num classes (including bg) = {}'.format(len(classes_count)))
-random.shuffle(all_images)
 
 num_imgs = len(all_images)
 train_imgs = [s for s in all_images if s['imageset'] == 'trainval']
