@@ -40,4 +40,4 @@ if __name__ == "__main__":
         predict(static_file_path)
     else:
         for image in images:
-            predict(static_file_path)
+            predict(image)

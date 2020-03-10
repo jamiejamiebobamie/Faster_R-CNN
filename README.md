@@ -13,7 +13,7 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 * Place the downloaded 'kitti-object-detection' directory in the main project folder.
 * Make a subdirectory:
 ```mkdir model_trained```
-* Training takes a long time, so download the pickled model from my [google drive](www.google.com) and place the downloaded model in the 'model_trained' folder.
+* Training takes a long time, so download the pickled model from my [google drive](https://drive.google.com/file/d/1LSkLJChsDggG2QTvNeHZQtIG4E7vBcpJ/view?usp=sharing) and place the downloaded model in the 'model_trained' folder.
 * If you wish to train the model yourself, simply ignore the above step.
 * The built model is trained to recognize "Cars" and "Pedestrians".
 
