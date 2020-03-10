@@ -20,8 +20,8 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 Your files and folder structure should look like this:
 ```
 main project folder
-├── kentaroy47                      # Python code from kentaroy47's repo
-├── kitti-object-detection          # Downloaded dataset from Kaggle
+├── kentaroy47                      # Python code from kentaroy47's repo.
+├── kitti-object-detection          # Downloaded dataset from Kaggle.
 │   └── kitti_single               
 │       ├── testing
 │       │   └── image_2
@@ -39,8 +39,8 @@ main project folder
 * To make a prediction type:
 ```python3 main.py args```
 in your terminal and press 'enter'.
-'args' should be absolute filepaths of images you wish to predict.
-* Prediction results are saved in results_images
+'args' should be the absolute filepaths of images you wish to make predict on (separated by spaces).
+* Prediction results are saved in 'results_images'.
 
 ### Prerequisites
 
@@ -59,3 +59,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * **kentaroy47**'s repo on GitHub: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
 * https://github.com/broadinstitute/keras-rcnn
+
+![alt text](./results_images/000000.png)
