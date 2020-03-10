@@ -7,10 +7,11 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 
 * Clone the repo locally:
 ```git clone git@github.com:jamiejamiebobamie/Faster_R-CNN.git```
-* In your terminal, navigate to the main folder of the cloned repo. Install the requirements:
+* In your terminal, navigate to the main folder of the cloned repo.
+* Install the requirements:
 ```pip install -r requirements.txt```.
 * You'll need the Kitti Dataset. Download it [here](https://www.kaggle.com/twaldo/kitti-object-detection/download)
-* Place the 'kitti-object-detection' directory in the project folder.
+* Place the 'kitti-object-detection' directory in the main project folder.
 * Make a subdirectory:
 ```mkdir model_trained```
 * Training takes a long time, so download the pickled model from my [google drive](www.google.com) and place the downloaded model in the 'model_trained' folder.
