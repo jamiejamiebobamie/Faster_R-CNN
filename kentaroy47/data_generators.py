@@ -5,7 +5,7 @@ import random
 import copy
 import threading
 import itertools
-import kentaroy47.data_augment
+import kentaroy47.data_augment as data_augment
 
 # from: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
 

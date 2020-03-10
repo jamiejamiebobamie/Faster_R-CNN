@@ -9,7 +9,7 @@ if __name__ == "__main__":
     for arg in sys.argv[1:]:
         images.append(arg)
 
-# https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
+    # https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
     number_of_files_in_model_trained_folder = len(
                                         [name for name in
                                             os.listdir('./model_trained')
