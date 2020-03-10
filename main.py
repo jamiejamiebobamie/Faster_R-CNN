@@ -2,6 +2,8 @@ from train import train_model
 import sys
 import os
 
+
+
 if __name__ == "__main__":
     images = []
     for arg in sys.argv[1:]:
@@ -13,9 +15,13 @@ if __name__ == "__main__":
                                             os.listdir('./model_trained')
                                             if os.path.isfile(name)]
                                         )
+    print(number_of_files_in_model_trained_folder > 0)
     if number_of_files_in_model_trained_folder > 0:
         if files_in_model_trained_folder[0] == 'model_frcnn.vgg.hdf5':
             print('yep')
         else:
             print('nope')
             train_model()
+    else:
+        print('nope')
+        train_model()

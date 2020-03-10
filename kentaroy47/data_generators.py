@@ -5,7 +5,7 @@ import random
 import copy
 import threading
 import itertools
-import data_augment
+import kentaroy47.data_augment
 
 # from: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
 
@@ -49,7 +49,6 @@ def get_new_img_size(width, height, img_min_side=600):
 		resized_height = img_min_side
 
 	return resized_width, resized_height
-
 
 class SampleSelector:
 	def __init__(self, class_count):

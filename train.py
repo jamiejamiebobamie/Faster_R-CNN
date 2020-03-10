@@ -14,8 +14,8 @@ from keras.optimizers import Adam, SGD, RMSprop
 
 from kentaroy47.simple_parser import get_data
 from kentaroy47.config import Config
-import kentaroy47.data_generators
-import kentaroy47.data_augment
+import kentaroy47.data_generators as data_generators
+import kentaroy47.data_augment as data_augment
 import kentaroy47.resnet as nn
 import kentaroy47.losses as losses_fn
 from keras.utils import generic_utils
