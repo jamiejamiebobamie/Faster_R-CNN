@@ -39,7 +39,7 @@ main project folder
 * To make a prediction type:
 ```python3 main.py args```
 in your terminal and press 'enter'.
-'args' should be the absolute filepaths of images you wish to make predict on (separated by spaces).
+'args' should be the absolute filepaths of images you wish to make predictions on (separated by spaces).
 * Prediction results are saved in 'results_images'.
 
 ### Prerequisites
