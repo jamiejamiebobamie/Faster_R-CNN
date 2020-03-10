@@ -8,8 +8,10 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 Clone the repo locally:
 ```git clone git@github.com:jamiejamiebobamie/Faster_R-CNN.git```
 In your terminal, navigate to the main folder of the cloned repo. Install the requirements:
-```pip install -r requirements.txt```
-Training takes a long time, so download the pickled model from my google drive, found [here](www.google.com).
+```pip install -r requirements.txt```.
+You'll need the Kitti Dataset. Download it [here](https://www.kaggle.com/twaldo/kitti-object-detection/download)
+and place the downloaded directory in the project folder. It should be called 'kitti-object-detection'.
+Training takes a long time, so download the pickled model from my google drive, found [here](www.google.com)
 Make a subdirectory:
 ```mkdir model_trained``` and place the file in the folder.
 The built model is trained on the Kitti Dataset, specifically on "Cars" and "Pedestrians".

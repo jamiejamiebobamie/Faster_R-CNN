@@ -31,7 +31,6 @@ import random
 import sys
 import time
 import pickle
-from utils import print_keras_model_layers
 
 def train_model():
 
@@ -39,6 +38,7 @@ def train_model():
     base_model = VGG16(weights='imagenet', include_top=False)
     model = Model(inputs=base_model.input, outputs=base_model.get_layer('block2_pool').output)
 
+    # from: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
     cfg = Config()
     cfg.use_horizontal_flips = True
     cfg.use_vertical_flips = True
@@ -53,6 +53,10 @@ def train_model():
         class_mapping['bg'] = len(class_mapping)
 
     cfg.class_mapping = class_mapping
+    with open(cfg.config_save_file, 'wb') as config_f:
+        pickle.dump(cfg, config_f)
+        print('Config has been written to {}, and can be loaded when testing to ensure correct results'.format(
+            cfg.config_save_file))
 
     print('Training images per class:')
     pprint.pprint(classes_count)
