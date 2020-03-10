@@ -20,8 +20,8 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 Your files and folder structure should look like this:
 ```
 main project folder
-├── kentaroy47                      # Python code from [kentaroy47's repo](https://github.com/kentaroy47/frcnn-from-scratch-with-keras)
-├── kitti-object-detection          # Downloaded dataset from [Kaggle](https://www.kaggle.com/twaldo/kitti-object-detection)
+├── kentaroy47                      # Python code from kentaroy47's repo
+├── kitti-object-detection          # Downloaded dataset from Kaggle
 │   └── kitti_single               
 │       ├── testing
 │       │   └── image_2
@@ -29,7 +29,7 @@ main project folder
 │           ├── image_2
 │           └── label_2
 ├── model_trained                   # Trained model folder.
-│   └── model_frcnn.vgg.hdf5        # Pickled/built model from my [Google drive](www.google.com).
+│   └── model_frcnn.vgg.hdf5        # Pickled/built model from my Google drive
 ├── results_images                  # Results images.
 ├── utils
 └── ...[files]...
