@@ -117,7 +117,7 @@ def train_model():
     model_all.compile(optimizer='sgd', loss='mae')
 
 
-    epoch_length = 1#1000
+    epoch_length = 10 # 1000
     num_epochs = int(cfg.num_epochs)
     iter_num = 0
 

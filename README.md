@@ -57,5 +57,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* kentaroy47's repo on GitHub: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
+* **kentaroy47**'s repo on GitHub: https://github.com/kentaroy47/frcnn-from-scratch-with-keras
 * https://github.com/broadinstitute/keras-rcnn
