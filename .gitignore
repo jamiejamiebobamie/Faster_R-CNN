@@ -1,2 +1,2 @@
 /kitti-object-detection
-/model_trained/model_frcnn.vgg.hdf5
+/model_trained/*

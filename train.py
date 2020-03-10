@@ -12,14 +12,14 @@ from keras.applications.vgg16 import VGG16, preprocess_input
 from sklearn.model_selection import train_test_split
 from keras.optimizers import Adam, SGD, RMSprop
 
-from simple_parser import get_data
-from config import Config
-import data_generators
-import data_augment
-import resnet as nn
-import losses as losses_fn
+from kentaroy47.simple_parser import get_data
+from kentaroy47.config import Config
+import kentaroy47.data_generators
+import kentaroy47.data_augment
+import kentaroy47.resnet as nn
+import kentaroy47.losses as losses_fn
 from keras.utils import generic_utils
-import roi_helpers as roi_helpers
+import kentaroy47.roi_helpers as roi_helpers
 
 import os
 import glob
