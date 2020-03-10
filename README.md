@@ -1,7 +1,6 @@
 # Faster R-CNN
 
-This is a Keras implementation of Faster R-CNN. It takes large code snippets from kentaroy47's implementation of Faster R-CNN, which can be found [here]
-(https://github.com/kentaroy47/frcnn-from-scratch-with-keras)
+This is a Keras implementation of Faster R-CNN. It takes large code snippets from kentaroy47's implementation of Faster R-CNN, which can be found [here](https://github.com/kentaroy47/frcnn-from-scratch-with-keras) .
 
 ## Getting Started
 
@@ -10,7 +9,7 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 * In your terminal, navigate to the main folder of the cloned repo.
 * Install the requirements:
 ```pip install -r requirements.txt```.
-* You'll need the Kitti Dataset. Download it [here](https://www.kaggle.com/twaldo/kitti-object-detection/download)
+* You'll need the Kitti Dataset. Download it [here](https://www.kaggle.com/twaldo/kitti-object-detection/download) .
 * Place the 'kitti-object-detection' directory in the main project folder.
 * Make a subdirectory:
 ```mkdir model_trained```
