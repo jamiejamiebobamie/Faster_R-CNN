@@ -18,7 +18,7 @@ This is a Keras implementation of Faster R-CNN. It takes large code snippets fro
 * The built model is trained to recognize "Cars" and "Pedestrians".
 
 Your files and folder structure should look like this:
-
+```
 main project folder
 ├── kentaroy47                      # Python code from [kentaroy47's repo](https://github.com/kentaroy47/frcnn-from-scratch-with-keras)
 ├── kitti-object-detection          # Downloaded dataset from [Kaggle](https://www.kaggle.com/twaldo/kitti-object-detection)
@@ -33,6 +33,7 @@ main project folder
 ├── results_images                  # Results images.
 ├── utils
 └── ...[files]...
+```
 
 ## Prediction
 * To make a prediction type:
