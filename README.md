@@ -1,6 +1,6 @@
 # Faster R-CNN
 
-This is a Keras implementation of Faster R-CNN. It takes large code snippets from kentaroy47's implementation of Faster R-CNN, which can be found [here].
+This is a Keras implementation of Faster R-CNN. It takes large code snippets from kentaroy47's implementation of Faster R-CNN, which can be found [here]
 (https://github.com/kentaroy47/frcnn-from-scratch-with-keras)
 
 ## Getting Started
