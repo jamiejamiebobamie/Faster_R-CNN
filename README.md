@@ -9,9 +9,11 @@ Clone the repo locally:
 ```git clone git@github.com:jamiejamiebobamie/Faster_R-CNN.git```
 In your terminal, navigate to the main folder of the cloned repo. Install the requirements:
 ```pip install -r requirements.txt```
-Training takes a long time, so download the pickled model from my google drive, found [here](www.google.com) and place the file in the '/model_trained' folder.
+Training takes a long time, so download the pickled model from my google drive, found [here](www.google.com).
+Make a subdirectory:
+```mkdir model_trained``` and place the file in the folder.
 The built model is trained on the Kitti Dataset, specifically on "Cars" and "Pedestrians".
-If you wish to train the model yourself, ignore the above step.
+If you wish to train the model yourself, simply ignore the above step.
 To make a prediction type:
 ```python3 main.py args```
 in your terminal and press 'enter'.

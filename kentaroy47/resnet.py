@@ -16,8 +16,8 @@ from keras.layers import Input, Add, Dense, Activation, Flatten, Convolution2D, 
 
 from keras import backend as K
 
-from kentaroy47.roi_pooling_conv import RoiPoolingConv
-from kentaroy47.fixed_batch_normalization import FixedBatchNormalization
+from kentaroy47.roi_pooling_conv import RoiPoolingConv as RoiPoolingConv
+from kentaroy47.fixed_batch_normalization import FixedBatchNormalization as FixedBatchNormalization
 
 
 def get_weight_path():

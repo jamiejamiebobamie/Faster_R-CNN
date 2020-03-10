@@ -1,7 +1,7 @@
 import numpy as np
 import pdb
 import math
-import kentaroy47.data_generators
+import kentaroy47.data_generators as data_generators
 import copy
 
 

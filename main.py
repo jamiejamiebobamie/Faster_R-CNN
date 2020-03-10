@@ -1,7 +1,7 @@
 from train import train_model
 import sys
+import glob
 import os
-
 
 
 if __name__ == "__main__":
@@ -9,19 +9,19 @@ if __name__ == "__main__":
     for arg in sys.argv[1:]:
         images.append(arg)
 
-    # https://stackoverflow.com/questions/2632205/how-to-count-the-number-of-files-in-a-directory-using-python
-    number_of_files_in_model_trained_folder = len(
-                                        [name for name in
-                                            os.listdir('./model_trained')
-                                            if os.path.isfile(name)]
-                                        )
-    print(number_of_files_in_model_trained_folder > 0)
-    if number_of_files_in_model_trained_folder > 0:
-        if files_in_model_trained_folder[0] == 'model_frcnn.vgg.hdf5':
-            print('yep')
-        else:
-            print('nope')
-            train_model()
-    else:
-        print('nope')
+    currentDirectory = os.getcwd()
+
+    files_in_model_trained_folder = glob.glob(currentDirectory
+                                                + '/model_trained/*')
+
+    folder_empty = len(files_in_model_trained_folder) == 0
+
+    if folder_empty:
         train_model()
+    else:
+        model_found = (files_in_model_trained_folder[0]
+                == (currentDirectory +'/model_trained/model_frcnn.vgg.hdf5'))
+        if model_found:
+                print('model found. \nbeginning prediction(s).')
+        else:
+            train_model()
